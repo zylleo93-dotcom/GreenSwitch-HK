@@ -1,0 +1,27 @@
+{
+  "entities": {
+    "AICache": {
+      "title": "AI 识别结果缓存",
+      "description": "存储文件哈希与 AI 识别结果的映射，减少重复调用",
+      "type": "object",
+      "properties": {
+        "result": {
+          "type": "object",
+          "description": "AI 识别出的结构化数据"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "缓存创建时间"
+        }
+      },
+      "required": ["result", "createdAt"]
+    }
+  },
+  "firestore": {
+    "/ai_cache/{hash}": {
+      "schema": "AICache",
+      "description": "以文件组合哈希作为文档 ID 的缓存集合"
+    }
+  }
+}
